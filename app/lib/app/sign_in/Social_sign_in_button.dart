@@ -12,17 +12,19 @@ class SocialSignInButton extends CustomButton{
 
   }) : super(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(assetName),
+              
               Text(
                 text,
                 style: TextStyle(color: textColor, fontSize: 15.0),
               ),
-              Opacity(
-                opacity: 0,
-                child: Image.asset('images/google-logo.png')
-              ),
+              // Opacity(
+              //   opacity: 0,
+              //   child: Image.asset('images/google-logo.png')
+              // ),
+              SizedBox(width: 10,)
             ],
           ),
             color: color,

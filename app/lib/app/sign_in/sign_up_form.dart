@@ -1,3 +1,4 @@
+import 'package:app/app/sign_in/sign_in_form.dart';
 import 'package:app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import 'package:app/Models/user.dart';
 import 'package:email_validator/email_validator.dart';
 
 class SignUpModel extends StatefulWidget {
+  static const String routeName = '/SignUp';
   SignUpModel({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +17,7 @@ class SignUpModel extends StatefulWidget {
 class _SignUpState extends State<SignUpModel> {
   final _formKey = GlobalKey<FormState>();
   final AuthService authService = AuthService();
-  User user = User('', '', '');
+  User user = User('', '', '','');
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _SignUpState extends State<SignUpModel> {
             height: 170,
           ),
           Text(
-            "Sign in",
+            "Sign Up",
             style: GoogleFonts.pacifico(
                 fontWeight: FontWeight.bold, fontSize: 50, color: Colors.blue),
           ),
@@ -63,7 +65,7 @@ class _SignUpState extends State<SignUpModel> {
           SizedBox(height: 32.0),
           _buildButton(),
           SizedBox(height: 10.0),
-          Text('sei gia` registrato?' + " accedi")
+          _buildTextLink()
         ],
       ),
     );
@@ -139,12 +141,41 @@ class _SignUpState extends State<SignUpModel> {
                   borderRadius: BorderRadius.all(Radius.circular(16.0))),
             ),
             child: Text(
-              "Sign in",
+              "Sign up",
               style: TextStyle(color: Colors.white, fontSize: 16.0),
             ),
             onPressed: () => signUpUser()),
       ),
     );
+  }
+
+  Widget _buildTextLink() {
+    return Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'sei iscritto?',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(width: 6),
+            InkWell(
+              onTap: () {Navigator.pushNamedAndRemoveUntil(context, SignInModel.routeName, (route) => false);},
+              child: Text(
+                'Accedi',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          ],
+        ));
   }
 
   String? validateEmail(String? value) {

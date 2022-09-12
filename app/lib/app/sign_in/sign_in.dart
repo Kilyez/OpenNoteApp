@@ -1,4 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
+
+import 'package:app/app/sign_in/sign_in_form.dart';
+
 import 'SignIn_Button.dart';
 import 'Social_sign_in_button.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +22,12 @@ class SignInPage extends StatelessWidget {
           ),
         elevation: 2.0,
       ),
-      body: _buildContent(),
+      body: _buildContent(context),
       backgroundColor: Colors.grey[200],
     );
   }
-}
 
-Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
   return Padding(
     padding: EdgeInsets.all(16.0),
     child: Column(
@@ -32,7 +35,7 @@ Widget _buildContent() {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          'Sign In',
+          '',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 32.0,
@@ -66,7 +69,7 @@ Widget _buildContent() {
           text: 'Sign In with email',
           textColor: Colors.white,
           color: Color(0xFF00796B),
-          onPressed:() {},
+          onPressed:() {Navigator.pushNamedAndRemoveUntil(context, SignInModel.routeName, (route) => false);},
         ),
         SizedBox(
           height: 8.0,
@@ -92,6 +95,9 @@ Widget _buildContent() {
     ),
   );
 }
+}
+
+
 
 void _signInWithGoogle(){
 

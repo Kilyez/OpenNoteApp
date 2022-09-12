@@ -155,7 +155,7 @@ class _UserScreenState extends State<UserScreen> {
                         itemCount: notes!.length + 1,
                         itemBuilder: (context, index) {
                           if (index < notes!.length) {
-                            return NoteCard(note: notes![index]);
+                            return NoteCard(note: notes![index],isUserNote:true,updateNoteDelete: deleteNote,);
                           } else {
                             return Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 32),
@@ -229,5 +229,11 @@ class _UserScreenState extends State<UserScreen> {
         UserSharedPreferences.setUserImage(path!);
       });
     }
+  }
+
+  void deleteNote({required Note note}){
+    setState(() {
+      notes!.remove(note);
+    });
   }
 }

@@ -5,6 +5,7 @@ import 'package:app/services/notes_services.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:open_file/open_file.dart';
 import 'package:pdf_render/pdf_render.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
@@ -14,8 +15,10 @@ import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 
 class NoteCard extends StatefulWidget {
-  NoteCard({super.key, required this.note,});
+  NoteCard({super.key, required this.note, required this.isUserNote, required this.updateNoteDelete});
   Note note = Note('', '', '', '',[]);
+  bool isUserNote;
+  Function updateNoteDelete;
   
   
   @override
@@ -107,9 +110,13 @@ class _NoteCardState extends State<NoteCard> {
                   isLiked: widget.note.like.contains(user.id),
                   likeCount: widget.note.like.length,
                 ),
-                IconButton(
+                widget.isUserNote ? IconButton(
                   iconSize: 20,
                   icon: Icon(Icons.delete),
+                  onPressed: deleteNote,
+                ) : IconButton(
+                  iconSize: 20,
+                  icon: Icon(Icons.edit),
                   onPressed: () {},
                 ),
               ],
@@ -124,5 +131,10 @@ class _NoteCardState extends State<NoteCard> {
     
     notesService.updateNote(note: widget.note,context: context,isliked: !isliked);
     return !isliked;
+  }
+
+  void deleteNote(){
+    notesService.deleteNote(id: widget.note.id);
+    widget.updateNoteDelete(note: widget.note);
   }
 }

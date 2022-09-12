@@ -9,3 +9,4 @@ String getNoteuri = 'http://192.168.0.193:8080/getNote';
 String updateNoteuri = 'http://192.168.0.193:8080/updateNote';
 String getCoursesuri = 'http://192.168.0.193:8080/getCourse';
 String getPathSorteduri = 'http://192.168.0.193:8080/getFilesPathSorted';
+String deleteNoteuri = 'http://192.168.0.193:8080/deleteNote';

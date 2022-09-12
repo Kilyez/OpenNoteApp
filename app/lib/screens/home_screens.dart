@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: notes!.length + 1,
                         itemBuilder: (context, index) {
                           if (index < notes!.length) {
-                            return NoteCard(note: notes![index]);
+                            return NoteCard(note: notes![index], isUserNote:false, updateNoteDelete: (){},);
                           } else {
                             return Padding(
                                 padding:

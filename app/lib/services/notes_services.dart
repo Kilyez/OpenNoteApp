@@ -186,6 +186,19 @@ class NotesServices {
         print(res.body);
     return jsonDecode(res.body);
   }
+
+  void deleteNote({required String id}) async {
+    
+    
+    http.Response res = await http.get(
+        Uri.parse('$deleteNoteuri?_id=$id'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; cahrset=UTF-8',
+        });
+       
+        print(res.body);
+    
+  }
 }
 //request.files.add(http.MultipartFile.fromBytes('file', bytes!,
 //      contentType: MediaType('application', 'x-tar'), filename: filename));
